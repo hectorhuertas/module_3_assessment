@@ -11,5 +11,10 @@ class ProductSearch < ActionDispatch::IntegrationTest
     fill_in 'product[search]', with:'sennheiser'
     click_on "Search"
     assert_equal '/search', current_path
+
+    assert page.has_content? 'SKU:'
+    assert page.has_content? 'Name:'
+    assert page.has_content? 'Customer Average:'
+    assert page.has_content? 'Short Description:'
   end
 end
