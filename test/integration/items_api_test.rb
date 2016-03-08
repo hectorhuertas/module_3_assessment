@@ -10,6 +10,7 @@ class ProjectSetupTest < ActionDispatch::IntegrationTest
   test "items index endpoint" do
     get "/api/v1/items"
     assert_equal response.status, 200
-    # assert_equal response.lenght, 500
+    binding.pry
+    assert_equal response.lenght, 500
   end
 end
