@@ -29,4 +29,24 @@ class ProjectSetupTest < ActionDispatch::IntegrationTest
     assert_equal response.status, 200
     assert_equal json['items'].size, 2
   end
+
+  test "items show endpoint" do
+    create_items(1)
+
+    get "/api/v1/items/1"
+    assert response.success?
+    assert_equal response.status, 200
+
+    item = Item.last
+    assert_equal json['item']['id'], item.id
+    assert_equal json['item']['name'], item.name
+    assert_equal json['item']['description'], item.description
+    assert_equal json['item']['image_url'], item.image_url
+    refute json['item']['created_at']
+    refute json['item']['updated_at']
+  end
+
+  test "item deletion endpoint" do
+    create_items(2)
+  end
 end
