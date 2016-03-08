@@ -35,7 +35,7 @@ class ProjectSetupTest < ActionDispatch::IntegrationTest
 
     get "/api/v1/items/1"
     assert response.success?
-    assert_equal response.status, 200
+    assert_equal 200, response.status
 
     item = Item.last
     assert_equal json['item']['id'], item.id
@@ -48,5 +48,11 @@ class ProjectSetupTest < ActionDispatch::IntegrationTest
 
   test "item deletion endpoint" do
     create_items(2)
+    assert_equal Item.count, 2
+
+    delete '/api/v1/items/1'
+    assert response.success?
+    assert_equal 204, response.status
+    assert_equal Item.count, 1
   end
 end
