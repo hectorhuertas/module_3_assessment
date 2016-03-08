@@ -13,7 +13,7 @@ class ProductSearch < ActionDispatch::IntegrationTest
 
   test "product search" do
     visit root_path
-    fill_in box, with:'sennheiser'
+    fill_in 'product[search]', with:'sennheiser'
     click_on "Search"
     assert_equal '/search', current_path
   end

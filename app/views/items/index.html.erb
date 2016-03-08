@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 text-center">
-      <%= form_for :tag do |f| %>
-      <%= f.label :search %>
+      <%= form_for :product, method: 'get', url: '/search' do |f| %>
+      <%= f.label :products %>
       <%= f.text_field :search %>
-      <%= f.submit %>
+      <%= f.submit 'Search' %>
       <% end %>
     </div>
   </div>
