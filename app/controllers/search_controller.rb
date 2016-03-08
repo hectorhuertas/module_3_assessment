@@ -1,10 +1,8 @@
 class SearchController < ApplicationController
   def index
-    @conn = Faraday.new(url: 'https://api.bestbuy.com/v1', params: {apiKey: ENV['BEST_BUY_API_KEY']})
-    # b = @conn.get('/products(manufacturer=sennheiser&salePrice<1000)?format=json&show=sku,name,salePrice')
-    # json = JSON.parse b.body
-
-    z = Faraday.get("https://api.bestbuy.com/v1/products(manufacturer='sennheiser'&salePrice<1000)?format=json&show=sku,name,salePrice&apiKey=rab5wajs56dheukch9svjkkm")
-    binding.pry
+    keywords = params['product']['search']
+    @conn = Faraday.new(url: 'https://api.bestbuy.com', params: {apiKey: ENV['BEST_BUY_API_KEY']})
+    response = @conn.get("/v1/products(manufacturer=#{keywords})?format=json&pageSize=15&show=sku,name,customerReviewAverage,shortDescription,salePrice,image")
+    @products = JSON.parse(response.body)['products']
   end
 end

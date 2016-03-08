@@ -6,10 +6,6 @@ class ProductSearch < ActionDispatch::IntegrationTest
     Capybara.app = Storedom::Application
   end
 
-  # @conn = Faraday.new(url: 'https://api.bestbuy.com', params: {apiKey: ENV['BEST_BUY_API_KEY']})
-  # b = @conn.get('/beta/products/mostViewed')
-  # json = JSON.parse b.body
-
   test "product search" do
     visit root_path
     fill_in 'product[search]', with:'sennheiser'
