@@ -15,6 +15,7 @@ gem "less-rails-bootstrap"
 gem "minitest-rails"
 gem 'faraday'
 gem 'figaro'
+gem 'responders'
 
 group :development do
   gem "spring"
