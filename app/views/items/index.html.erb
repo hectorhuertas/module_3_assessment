@@ -1,5 +1,14 @@
 <div class="container">
   <div class="row">
+    <div class="col-sm-12 text-center">
+      <%= form_for :tag do |f| %>
+      <%= f.label :search %>
+      <%= f.text_field :search %>
+      <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-sm-12">
       <h1><%= @items.count %> Items</h1>
     </div>
@@ -15,4 +24,3 @@
     </div>
   <% end %>
 </div>
-

@@ -2,10 +2,6 @@ require_relative '../test_helper'
 
 class ProjectSetupTest < ActionDispatch::IntegrationTest
 
-  def setup
-    Capybara.app = Storedom::Application
-  end
-
   def create_items(number)
     number.times do |i|
       Item.create(
