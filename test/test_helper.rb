@@ -19,3 +19,8 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 end
+
+VCR.configure do |config|
+  config.cassette_library_dir = "test/vcr"
+  config.hook_into :webmock # or :fakeweb
+end

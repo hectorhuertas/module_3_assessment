@@ -7,14 +7,16 @@ class ProductSearch < ActionDispatch::IntegrationTest
   end
 
   test "product search" do
-    visit root_path
-    fill_in 'product[search]', with:'sennheiser'
-    click_on "Search"
-    assert_equal '/search', current_path
+    VCR.use_cassette('product_search') do
+      visit root_path
+      fill_in 'product[search]', with:'sennheiser'
+      click_on "Search"
+      assert_equal '/search', current_path
 
-    assert page.has_content? 'SKU:'
-    assert page.has_content? 'Name:'
-    assert page.has_content? 'Customer Average:'
-    assert page.has_content? 'Short Description:'
+      assert page.has_content? 'SKU:'
+      assert page.has_content? 'Name:'
+      assert page.has_content? 'Customer Average:'
+      assert page.has_content? 'Short Description:'
+    end
   end
 end
