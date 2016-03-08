@@ -13,6 +13,8 @@ gem "haml-rails"
 gem "therubyracer"
 gem "less-rails-bootstrap"
 gem "minitest-rails"
+gem 'faraday'
+gem 'figaro'
 
 group :development do
   gem "spring"
