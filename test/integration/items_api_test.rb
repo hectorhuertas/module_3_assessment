@@ -55,4 +55,19 @@ class ProjectSetupTest < ActionDispatch::IntegrationTest
     assert_equal 204, response.status
     assert_equal Item.count, 1
   end
+
+  test "item creation endpoint" do
+    new_item = {item:
+      { name: 'bob',
+        description: 'long bob',
+        image_url: 'long image url' }}
+    post '/api/v1/items', new_item
+    assert response.success?
+    assert_equal 201, response.status
+
+    item = Item.last
+    assert_equal new_item[:item][:name], item.name
+    assert_equal new_item[:item][:description], item.description
+    assert_equal new_item[:item][:image_url], item.image_url
+  end
 end
